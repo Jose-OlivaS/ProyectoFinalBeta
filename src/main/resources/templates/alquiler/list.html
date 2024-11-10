@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<th:block th:replace="layout/layout :: head-basic"></th:block>
+<th:block th:replace="layout/layout :: bootstrap-css"></th:block>
+<th:block th:replace="layout/layout :: general-css"></th:block>
+</head>
+<body>
+<nav th:replace="layout/layout :: menu"></nav>
+<div th:replace="layout/layout :: screen-title"></div>
+<div th:replace="layout/layout :: messages-zone"></div>
+
+<div th:replace="layout/layout :: confirm"></div>
+
+<div class="container py-1">
+
+	<div class="row mt-3 general-options">
+		<div class="col-2">
+			<a class="btn standard-button" th:href="@{'/alquiler/formcr/'+${actualpage}}" th:text="${applicationData.getScreenName(optionCode,'CREATE')}"></a>
+		</div>
+		<div class="col-10">
+		
+		<th:block th:if="${numalquiler>0}">
+		  <nav th:if="${numalquiler>0}" th:replace="layout/layout :: paginator"></nav>
+		</th:block> 
+		</div>
+	</div>
+
+<h5 class="text-center my-5 mx-5" th:if="${numalquiler==0}" th:text="${applicationData.getEmptyMessage(optionCode)}"></h5>
+
+<table th:if="${numalquiler>0}" class="table table-striped">
+<thead>
+	<tr>
+		<th scope="col">fechaInicio</th>
+<th scope="col">fechaFin</th>
+<th scope="col">matricula</th>
+<th scope="col">dni</th>
+
+		<th scope="col">Options</th>
+	</tr>
+</thead>
+<tbody>
+<tr th:each="entity: ${listalquiler}">
+		
+<td th:if="${entity.fechaInicio !=null}"
+					th:text="${entity.fechaInicio}">
+				<td th:if="${entity.fechaInicio ==null}" th:text="---"></td>
+
+
+<td th:if="${entity.fechaFin !=null}"
+					th:text="${entity.fechaFin}">
+				<td th:if="${entity.fechaFin ==null}" th:text="---"></td>
+
+
+<td th:if="${entity.matricula !=null}"
+					th:text="${entity.matricula}">
+				<td th:if="${entity.matricula ==null}" th:text="---"></td>
+
+
+<td th:if="${entity.dni !=null}"
+					th:text="${entity.dni}">
+				<td th:if="${entity.dni ==null}" th:text="---"></td>
+
+
+
+
+	<td>
+	    <a th:href="@{'/alquiler/view/'+${entity.id}+'/'+${actualpage}}" title="View"><svg th:replace="layout/icons_svg :: svg-view"></svg></a>
+		<a th:href="@{'/alquiler/formup/'+${entity.id}+'/'+${actualpage}}" title="Update"><svg th:replace="layout/icons_svg :: svg-update"></svg></a>
+		<a sec:authorize="hasRole('ROLE_ADMIN')" href="#" title="Delete" th:attr="onclick=|showConfirmation('/alquiler/delete/'+'${entity.id}'+'/'+'${actualpage}','Delete element','<strong>'+'${entity.matricula}'+'</strong><br>Are you sure you want to delete this element?','Delete')|">
+		<svg th:replace="layout/icons_svg :: svg-delete"></svg></a>
+		<span sec:authorize="!hasRole('ROLE_ADMIN')"><svg th:replace="layout/icons_svg :: svg-delete"></svg></span>
+	</td>
+	</tr>
+</tbody>
+</table>
+
+<th:block th:if="${numalquiler>0}">
+	<nav th:replace="layout/layout :: paginator"></nav>
+</th:block>
+
+</div>
+
+<div th:replace="layout/layout :: authorship"></div>
+
+<div th:insert="layout/layout :: jquery-js"></div>
+<div th:insert="layout/layout :: bootstrap-js"></div>
+
+<script
+		th:replace="layout/layout :: dialog_confirmation"></script>
+	
+</body>
+</html>

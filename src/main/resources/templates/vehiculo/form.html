@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+	<th:block th:replace="layout/layout :: head-basic"></th:block>
+	<th:block th:replace="layout/layout :: bootstrap-css"></th:block>
+	<th:block th:replace="layout/layout :: jquery-ui-css"></th:block>
+	<th:block th:replace="layout/layout :: general-css"></th:block>
+</head>
+<body>
+<nav th:replace="layout/layout :: menu"></nav>
+<div th:replace="layout/layout :: screen-title"></div>
+<div th:replace="layout/layout :: messages-zone"></div>
+
+<div class="container py-1">
+
+	<div class="row justify-content-center mt-3 ms-1 me-1">
+		<div class="col-12 formclass create-form shadow">
+			<form class="mt-3" th:object="${vehiculo}" method="post"
+				  th:action="@{'/vehiculo/form/'+${actualpage}}" enctype="multipart/form-data">
+
+				<div class="row g-3 align-items-center mb-3">
+					<div class="col-md-2">
+						<label for="matricula" class="form-label mb-0 fw-bold">Matricula: </label>
+					</div>
+					<div class="col-md-4 mt-1 mt-md-3">
+						<input type="text" class="form-control form-control-sm" id="matricula"
+							   th:field="*{matricula}">
+					</div>
+					<span class="text-danger" th:if="${#fields.hasErrors('matricula')}" th:uerrors="*{matricula}"></span>
+				</div>
+				<div class="row g-3 align-items-center mb-3">
+					<div class="col-md-2">
+						<label for="marca" class="form-label mb-0 fw-bold">Marca: </label>
+					</div>
+					<div class="col-md-4 mt-1 mt-md-3">
+						<input type="text" class="form-control form-control-sm" id="marca"
+							   th:field="*{marca}">
+					</div>
+					<span class="text-danger" th:if="${#fields.hasErrors('marca')}" th:uerrors="*{marca}"></span>
+				</div>
+				<div class="row g-3 align-items-center mb-3">
+					<div class="col-md-2">
+						<label for="modelo" class="form-label mb-0 fw-bold">Modelo: </label>
+					</div>
+					<div class="col-md-4 mt-1 mt-md-3">
+						<input type="text" class="form-control form-control-sm" id="modelo"
+							   th:field="*{modelo}">
+					</div>
+					<span class="text-danger" th:if="${#fields.hasErrors('modelo')}" th:uerrors="*{modelo}"></span>
+				</div>
+				<div class="row g-3 align-items-center mb-3">
+					<div class="col-md-2">
+						<label for="foto" class="form-label mb-0 fw-bold">Foto: </label>
+					</div>
+
+					<div class="col-md-4 mt-1 mt-md-3" >
+						<div class="col-12 mt-1 mb-1" th:if="${vehiculo.foto != null}">
+							<div class="col-md-12 mt-1 mt-md-3"  id="fotoImageDiv">
+								<table>
+									<tr><td>
+										<a th:href="@{'/vehiculo/viewimg/'+${vehiculo.id}+'/foto'}" title="View Foto">
+											<img th:if="${vehiculo.foto != null}" th:src="@{'/upload/' + ${vehiculo.foto}}" width="100px" class="border border-white shadow" id="fotoImage"><br>
+										</a>
+									</td>
+										<td class="ps-2">
+											<a sec:authorize="hasRole('ROLE_ADMIN')" href="#" title="Delete Foto" th:attr="onclick=|clearImageField('fotoImage','fotoImageText','fotoImageDiv')|"><svg th:replace="layout/icons_svg :: svg-delete"></svg></a>
+										</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+
+						<div class="col-12 mt-2">
+							<input class="form-control form-control-sm file" type="file" id="foto" name="foto_formname">
+
+							<input type="hidden" class="form-control form-control-sm" id="fotoImageText" name="fotoImageText" th:value="${vehiculo.foto}">
+							<input type="hidden" class="form-control form-control-sm" id="fotoImageTextOld" name="fotoImageTextOld" th:value="${vehiculo.foto}">
+						</div>
+					</div>
+				</div>
+
+
+				<div class="row g-3 align-items-center mb-3">
+					<div class="col-md-2 mt-4">
+						<input class="btn standard-button"
+							   sec:authorize="hasRole('ROLE_ADMIN')" type="submit"
+							   th:value="${#strings.equalsIgnoreCase(screen,'CREATE')?'Create':'Update'}">
+						<input
+								sec:authorize="!hasRole('ROLE_ADMIN')" type="submit"
+								th:value="${#strings.equalsIgnoreCase(screen,'CREATE')?'Create':'Update'}"
+								disabled>
+					</div>
+				</div>
+
+			</form>
+		</div>
+	</div>
+
+</div>
+
+<div th:replace="layout/layout :: authorship"></div>
+
+<div th:insert="layout/layout :: jquery-js"></div>
+<div th:insert="layout/layout :: jquery-ui-js"></div>
+<div th:insert="layout/layout :: bootstrap-js"></div>
+
+
+
+<script th:replace="layout/layout :: clear_imagefield"></script>
+
+
+</body>
+</html>

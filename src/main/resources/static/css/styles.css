@@ -1,0 +1,205 @@
+:root {
+	--bgcolor-menu: #052311;
+	--color-menu: rgb(218, 247, 202);
+	--color-menu-hover: lightgray;
+	--color-menu-active: #3ad141;
+	--bgcolor-screen-titles: #18894d;
+	--bgcolor-standard-button: #18894d;
+	--color-standard-button: rgb(218, 247, 202);
+	--bgcolor-standard-button-hover: #45b353;
+	--color-standard-button-hover: rgb(218, 247, 202);
+	--color-light-link: rgb(218, 247, 202);
+	--color-light-link-hover: #e8ead4;
+	--background-color-form: #e8ead4;
+	--shadow-form: rgba(54, 229, 23, 0.075);
+	--color-subtle: rgb(128, 128, 128);
+}
+ 
+.menu-bar {
+	background-color: var(--bgcolor-menu);
+	color:var(--color-menu)!important;
+}
+
+.menu-bar a {
+	color: var(--color-menu)!important;
+}
+
+.menu-bar a:hover {
+	color: var(--color-menu-hover)!important;
+}
+
+.menu-bar a.active {
+	color: var(--color-menu-active)!important;
+}
+
+.menu-bar .navbar-toggler .navbar-toggler-icon{
+	fill: var(--color-menu)!important;
+}
+
+.menu-logo {
+	width: 60px;
+	height: 55px;
+}
+
+.navbar-toggler {
+	width: 40px;
+	height: 40px;
+	border-color:var(--color-menu)!important;
+	padding: 3px 8px!important;
+}
+
+.navbar-toggler:hover .line, .navbar-toggler:hover {
+	border-color: var(--color-menu-hover);
+}
+
+.line {
+	border-bottom: solid 3px var(--color-menu);
+	height:25%;
+}
+
+.no-line {
+	border-bottom: none;
+	height:20%;
+}
+
+.screen-title {
+	background-color: var(--bgcolor-screen-titles);
+}
+
+.screen-title h1 {
+	font-size: 20px;
+	color:var(--color-standard-button);
+	margin-top:3px;
+}
+
+.screen-title a {
+	color: var(--color-standard-button);
+	text-decoration: none;
+}
+
+.screen-title a:hover {
+	color: var(--color-light-link-hover);
+}
+
+
+.standard-button {
+	background-color: var(--bgcolor-standard-button);
+	color: var(--color-standard-button);
+}
+
+.standard-button:hover {
+	background-color: var(--bgcolor-standard-button-hover);
+	color: var(--color-standard-button-hover);
+}
+
+.light-link {
+	color: var(--color-light-link);
+	text-decoration: none;
+}
+
+a.light-link:hover {
+	color: var(--color-light-link-hover);
+}
+
+.pagination li a {
+	color: var(--bgcolor-standard-button);
+}
+
+.pagination li.active a {
+	background-color: var(--bgcolor-standard-button)!important;
+	border-color: var(--bgcolor-standard-button)!important;
+	color: var(--color-standard-button);
+}
+
+.pagination li.disabled a {
+	color: lightgray!important;
+}
+
+.pagination li a:hover {
+	background-color: var(--bgcolor-standard-button-hover)!important;
+	border-color: var(--bgcolor-standard-button-hover)!important;
+	color: var(--color-standard-button-hover);
+}
+
+svg {
+	fill: lightgray!important;
+}
+
+a .svg-option {
+	fill: var(--bgcolor-standard-button)!important;
+	margin-left:3px;
+	margin-right:3px;
+}
+
+a .svg-option:hover {
+	fill: var(--bgcolor-standard-button-hover)!important;
+}
+
+.formclass {
+	background-color: var(--background-color-form);
+	border: solid 1px var(--bgcolor-standard-button-hover);
+}
+
+
+.form-control:focus, .standard-button:focus, .page-item a:focus {
+    border-color: var(--bgcolor-standard-button-hover)!important;
+    box-shadow: 0 1px 1px var(--shadow-form) inset, 0 0 8px var(--bgcolor-standard-button-hover);
+    outline: 0 none;
+}
+
+.page-item a:focus {
+	color: var(--bgcolor-standard-button)!important;
+}
+
+.page-item.active a:focus {
+	color: var(--color-standard-button)!important;
+}
+
+input::file-selector-button {
+	background-color: var(--bgcolor-standard-button)!important;
+	color: var(--color-standard-button)!important;
+}
+
+
+.form-control:hover:not(:disabled):not([readonly])::file-selector-button {
+	background-color: var(--bgcolor-standard-button-hover)!important;
+	color: var(--color-standard-button-hover)!important;
+}
+
+.authorship {
+	border-top: solid 1px var(--color-subtle);
+}
+
+.authorship a, .authorship span {
+	color: var(--color-subtle);
+	text-decoration: none;
+}
+
+.authorship a:hover {
+	color: var(--bgcolor-standard-button);
+}
+
+
+.modal-header {
+	background-color: var(--bgcolor-standard-button);
+	color: var(--color-standard-button);
+}
+
+.modal-header .btn-close {
+	background-color: var(--color-standard-button)!important;
+}
+
+.error-info {
+		background-color: var(--bgcolor-standard-button);
+		color: var(--color-standard-button);
+}
+
+.error-info a {
+	color: var(--color-menu)!important;
+	text-decoration: none;
+}
+
+.error-info a:hover {
+	color: var(--color-menu-hover)!important;
+}
+
